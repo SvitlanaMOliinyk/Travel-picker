@@ -1,16 +1,13 @@
 // import { fetchCountryData } from '../pages/fetchPage.js';
-import { COUNTRIES_DATA, USER_DIV } from "../constants.js";
-
-const userDiv = document.getElementById(USER_DIV);
+import { USER_DIV } from "../constants.js";
+import { createNewElement } from "./createElementView.js";
 
 function showMoreData(selectElement) {
   const calledOption = selectElement.target.value;
 
   let showPara = document.querySelector(".option-info");
   if (showPara === null) {
-    showPara = document.createElement("p");
-    userDiv.appendChild(showPara);
-    showPara.classList.add("option-info");
+    showPara = createNewElement("p", USER_DIV, "option-info");
     showPara.textContent = calledOption;
   } else {
     showPara.textContent = "";
@@ -34,9 +31,7 @@ export function showOptions(chosenCountry) {
   if (selectedElement !== null) {
     return;
   }
-  const selectElement = document.createElement("select");
-  selectElement.classList.add("extra-info");
-  userDiv.appendChild(selectElement);
+  const selectElement = createNewElement("select", USER_DIV, "extra-info");
   for (const [key, value] of Object.entries(extraInfo)) {
     const option = document.createElement("option");
     option.label = key;

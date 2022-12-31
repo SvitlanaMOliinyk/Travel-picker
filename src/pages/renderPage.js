@@ -1,18 +1,14 @@
-import { COUNTRIES_DATA, USER_DIV } from "../constants.js";
+import { USER_DIV } from "../constants.js";
 import { showOptions } from "../view/selectView.js";
 import { restartButton } from "../view/restartView.js";
 import { showPhoto } from "../view/photoView.js";
 import { createCountryInfo } from "../view/countryView.js";
 
-const userDiv = document.getElementById(USER_DIV);
-
 export function renderResults(jsonData) {
-  emptyElement(userDiv);
+  emptyElement(USER_DIV);
 
   const randomNumber = Math.floor(Math.random() * 250);
-
   const chosenCountry = jsonData[randomNumber];
-
   const { name, currencies, capital, region } = chosenCountry;
 
   const currencyArr = [];
@@ -23,7 +19,6 @@ export function renderResults(jsonData) {
     }
   }
   createCountryInfo(name, currencyArr, capital, region);
-
   showOptions(chosenCountry);
   restartButton();
   showPhoto(name.common);
